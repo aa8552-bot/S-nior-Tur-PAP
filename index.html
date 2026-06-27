@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sénior+Tur — Barcelos com Alma</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal:    #3e8c7a;
+    --teal-dk: #2a5c52;
+    --teal-lt: #d6eae6;
+    --gold:    #c9923e;
+    --cream:   #f4f6f4;
+    --slate:   #1e3330;
+    --mist:    #e4efec;
+    --salmon:  #c0614a;
+    --purple:  #7b5ea7;
+    --white:   #ffffff;
+    --body-text:#3a3a3a;
+    --nav-h:   72px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--body-text); background: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--mist); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--teal); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--slate); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 0.5rem 1.25rem; border-radius: 50px; }
+  .nav-cta:hover { background: var(--teal-dk) !important; }
+
+  /* HERO */
+  #hero { min-height: 100vh; padding-top: var(--nav-h); background: linear-gradient(150deg, var(--teal-dk) 0%, var(--teal) 60%, #4fa08c 100%); display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; padding-left: 7vw; padding-right: 5vw; position: relative; overflow: hidden; }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow { font-size: 0.73rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 0.5rem; }
+  .hero-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--gold); margin-bottom: 1.75rem; }
+  .hero-desc { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.8); max-width: 440px; margin-bottom: 2.5rem; }
+  .hero-image {  width: 100%;  max-width: 420px;  height: 280px;  object-fit: cover;  border-radius: 30px;  box-shadow: 0 20px 50px rgba(0,0,0,0.25);}
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--white); padding: 0.85rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #a87530; transform: translateY(-1px); }
+  .btn-outline { border: 2px solid rgba(255,255,255,0.45); color: var(--white); padding: 0.85rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+  .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; }
+  .hero-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(12px); border-radius: 24px; padding: 2.5rem; width: 100%; max-width: 380px; text-align: center; }
+  .hero-card-logo { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+  .hero-card-logo span { color: var(--gold); }
+  .hero-card-sub { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 2rem; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat { background: rgba(255,255,255,0.1); border-radius: 14px; padding: 1rem; border: 1px solid rgba(255,255,255,0.12); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--gold); }
+  .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.65); margin-top: 0.2rem; line-height: 1.3; }
+
+  /* SECTIONS */
+  section { padding: 6rem 7vw; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--slate); line-height: 1.2; margin-bottom: 1rem; }
+  .section-lead { font-size: 1rem; line-height: 1.8; color: #666; max-width: 560px; margin-bottom: 3rem; }
+
+  /* SOBRE */
+  #sobre { background: var(--cream); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .sobre-values { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+  .value-pill { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border-radius: 12px; padding: 0.9rem 1.25rem; border-left: 3px solid var(--teal); font-size: 0.9rem; font-weight: 500; color: var(--slate); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .value-pill .icon { font-size: 1.1rem; width: 24px; text-align: center; }
+  .sobre-quote { background: var(--teal); border-radius: 20px; padding: 2.5rem; color: var(--white); }
+  .sobre-quote blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.25rem; }
+  .sobre-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .sobre-box { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.15); }
+  .sobre-box-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.4rem; }
+  .sobre-box-text { font-size: 0.82rem; color: rgba(255,255,255,0.88); line-height: 1.5; }
+
+  /* PACOTES */
+  #pacotes { background: var(--white); }
+  .pacotes-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+  .pacote-card { border-radius: 20px; overflow: hidden; border: 1px solid #e2e8e6; transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
+  .pacote-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+  .pacote-header { padding: 1.75rem 1.75rem 1.25rem; color: var(--white); }
+  .ph-teal  { background: var(--teal); }
+  .ph-slate { background: var(--teal-dk); }
+  .ph-gold  { background: var(--gold); }
+  .ph-dark  { background: #4a6b5e; }
+  .pacote-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .pacote-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .pacote-duration { font-size: 0.78rem; opacity: 0.82; }
+  .pacote-body { padding: 1.5rem 1.75rem; flex: 1; display: flex; flex-direction: column; background: var(--white); }
+  .pacote-price { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--teal); margin-bottom: 0.2rem; }
+  .pacote-price-label { font-size: 0.75rem; color: #999; margin-bottom: 1rem; }
+  .pacote-desc { font-size: 0.88rem; line-height: 1.65; color: #555; flex: 1; }
+  .pacote-includes { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--mist); display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { background: var(--teal-lt); color: var(--teal-dk); font-size: 0.72rem; font-weight: 500; padding: 0.3rem 0.7rem; border-radius: 50px; }
+  .pacotes-note { margin-top: 2rem; text-align: center; font-size: 0.85rem; color: #888; font-style: italic; }
+
+  /* SWOT */
+  #mercado { background: var(--slate); }
+  #mercado .section-title { color: var(--white); }
+  #mercado .section-lead { color: rgba(255,255,255,0.65); }
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .swot-box { border-radius: 16px; padding: 1.75rem; }
+  .swot-box.forcas       { background: rgba(62,140,122,0.22); border: 1px solid var(--teal); }
+  .swot-box.fraquezas    { background: rgba(192,97,74,0.15); border: 1px solid var(--salmon); }
+  .swot-box.oportunidades { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); }
+  .swot-box.ameacas      { background: rgba(123,94,167,0.15); border: 1px solid var(--purple); }
+  .swot-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1rem; }
+  .forcas .swot-label        { color: #7dd4c0; }
+  .fraquezas .swot-label     { color: #e8907a; }
+  .oportunidades .swot-label { color: #a0c4ba; }
+  .ameacas .swot-label       { color: #b49fd4; }
+  .swot-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .swot-list li { font-size: 0.875rem; color: rgba(255,255,255,0.82); line-height: 1.5; padding-left: 1rem; position: relative; }
+  .swot-list li::before { content: "–"; position: absolute; left: 0; color: rgba(255,255,255,0.35); }
+
+  /* VIABILIDADE */
+  #viabilidade { background: var(--cream); }
+  .via-top { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-bottom: 3rem; }
+  .via-num-card { background: var(--white); border-radius: 16px; padding: 1.5rem; border: 1px solid #dde8e5; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .via-num { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--teal); margin-bottom: 0.25rem; }
+  .via-num-title { font-size: 0.78rem; font-weight: 600; color: var(--slate); margin-bottom: 0.2rem; }
+  .via-num-sub { font-size: 0.7rem; color: #999; font-style: italic; }
+  .via-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .via-card { background: var(--white); border-radius: 16px; padding: 2rem; border: 1px solid #dde8e5; }
+  .via-card-title { font-size: 1rem; font-weight: 600; color: var(--slate); margin-bottom: 1.25rem; }
+  .via-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .via-list li { font-size: 0.875rem; color: #555; line-height: 1.5; padding-left: 1.3rem; position: relative; }
+  .via-list li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+  /* CONTACTO */
+  #contacto { background: var(--white); }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contacto-info { display: flex; flex-direction: column; gap: 1.25rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; background: var(--cream); border-radius: 14px; padding: 1.25rem; }
+  .contact-icon { font-size: 1.3rem; min-width: 2rem; text-align: center; margin-top: 0.1rem; }
+  .contact-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.2rem; }
+  .contact-value { font-size: 0.9rem; color: var(--slate); font-weight: 500; }
+  .contact-sub { font-size: 0.78rem; color: #888; margin-top: 0.1rem; }
+  .form-card { background: var(--teal); border-radius: 20px; padding: 2.5rem; }
+  .form-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 1.5rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 0.4rem; letter-spacing: 0.04em; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1rem; background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22); border-radius: 10px; color: var(--white); font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.45); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--teal-dk); color: var(--white); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-form { width: 100%; background: var(--gold); color: var(--white); border: none; padding: 0.95rem; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 0.5rem; transition: background 0.2s; }
+  .btn-form:hover { background: #a87530; }
+  .form-success { display: none; text-align: center; padding: 2rem; }
+  .form-success .check { font-size: 3rem; margin-bottom: 1rem; }
+  .form-success p { color: var(--white); font-size: 1rem; line-height: 1.6; }
+
+  /* FOOTER */
+  footer { background: var(--slate); color: rgba(255,255,255,0.6); padding: 3rem 7vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--white); font-weight: 700; }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; font-style: italic; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.28); width: 100%; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 1rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    #hero { grid-template-columns: 1fr; padding: 6rem 5vw 4rem; text-align: center; }
+    .hero-desc { max-width: 100%; }
+    .btn-group { justify-content: center; }
+    .hero-visual { display: none; }
+    .sobre-grid, .contacto-grid { grid-template-columns: 1fr; }
+    .pacotes-grid, .swot-grid, .via-bottom, .sobre-boxes { grid-template-columns: 1fr; }
+    .via-top { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    section { padding: 4rem 5vw; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Sénior<span>+</span>Tur</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#pacotes">Pacotes</a></li>
+    <li><a href="#mercado">Mercado</a></li>
+    <li><a href="#viabilidade">Viabilidade</a></li>
+    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Agência de Viagens · Barcelos</p>
+    <h1 class="hero-title">Sénior + Tur<br></h1>
+    <p class="hero-subtitle">Experiências que ficam.</p>
+    <p class="hero-desc">Turismo sénior ativo, pensado para quem quer viver, descobrir e partilhar — com conforto, autenticidade e o melhor de Barcelos.</p>
+    <div class="btn-group">
+      <a href="#pacotes" class="btn-primary">Ver Pacotes</a>
+      <a href="#contacto" class="btn-outline">Contactar-nos</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual">
+    <img src="image (4).png" alt="Séniores a viajar" class="hero-image">
+  </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="sobre-grid">
+    <div>
+      <p class="section-eyebrow">02 · Conceito e Missão</p>
+      <h2 class="section-title">Quem somos</h2>
+      <p class="section-lead" style="margin-bottom:1.5rem">A Sénior+Tur nasceu da vontade de dar uma resposta real a um segmento negligenciado: séniores ativos que querem explorar Barcelos com segurança, conforto e profundidade cultural.</p>
+      <div class="sobre-values">
+        <div class="value-pill"><span class="icon">🏛</span> Missão — experiências culturais, turísticas e recreativas acessíveis</div>
+        <div class="value-pill"><span class="icon">🌟</span> Visão — referência em qualidade de vida para idosos em Barcelos</div>
+        <div class="value-pill"><span class="icon">🤝</span> Respeito · Inclusão · Envelhecimento ativo · Proximidade</div>
+        <div class="value-pill"><span class="icon">🌿</span> Valorização cultural e práticas sustentáveis</div>
+      </div>
+    </div>
+    <div class="sobre-quote">
+      <blockquote>"Durante o estágio no Posto de Turismo de Barcelos, identifiquei que a oferta para maiores de 65 anos era insuficiente ou esquecida — num concelho com um património riquíssimo."</blockquote>
+      <p style="font-size:0.8rem;opacity:0.7;margin-bottom:1.5rem">— Ana Teresa Loureiro da Costa, fundadora</p>
+      <div class="sobre-boxes">
+        <div class="sobre-box"><div class="sobre-box-title">Forma Jurídica</div><div class="sobre-box-text">Soc. Unipessoal por Quotas</div></div>
+        <div class="sobre-box"><div class="sobre-box-title">Registo</div><div class="sobre-box-text">RNAAT — Turismo de Portugal</div></div>
+        <div class="sobre-box"><div class="sobre-box-title">Localização</div><div class="sobre-box-text">Rua Dr. Abel Varzim, Bloco 32</div></div>
+        <div class="sobre-box"><div class="sobre-box-title">Público-alvo</div><div class="sobre-box-text">Séniores ativos 60+</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pacotes">
+  <p class="section-eyebrow">04 · Pacotes Turísticos</p>
+  <h2 class="section-title">4 Experiências Exclusivas</h2>
+  <p class="section-lead">Cada pacote foi desenhado com atenção ao ritmo, conforto e riqueza cultural de Barcelos. Transporte adaptado, guia especializado e seguro incluídos em todos.</p>
+  <div class="pacotes-grid">
+    <div class="pacote-card">
+      <div class="pacote-header ph-teal"><div class="pacote-icon">🏛</div><div class="pacote-name">Tradições com Alma</div><div class="pacote-duration">2 dias / 1 noite</div></div>
+      <div class="pacote-body"><div class="pacote-price">190€</div><div class="pacote-price-label">por pessoa</div><p class="pacote-desc">Imersão profunda no património de Barcelos: visitas guiadas a museus, a Hora da Lenda, música tradicional ao vivo e gastronomia minhota.</p><div class="pacote-includes"><span class="tag">Transporte adaptado</span><span class="tag">Guia especializado</span><span class="tag">Seguro viagem</span><span class="tag">Kit boas-vindas</span></div></div>
+    </div>
+    <div class="pacote-card">
+      <div class="pacote-header ph-slate"><div class="pacote-icon">👨‍👩‍👧</div><div class="pacote-name">Momentos em Família</div><div class="pacote-duration">2 dias / 1 noite</div></div>
+      <div class="pacote-body"><div class="pacote-price">135€</div><div class="pacote-price-label">por pessoa</div><p class="pacote-desc">Atividades intergeracionais que unem avós, filhos e netos: dinâmicas de grupo, jogos de memória e momentos de partilha inesquecíveis.</p><div class="pacote-includes"><span class="tag">Atividades em grupo</span><span class="tag">Jogos memória</span><span class="tag">Guia especializado</span><span class="tag">Kit boas-vindas</span></div></div>
+    </div>
+    <div class="pacote-card">
+      <div class="pacote-header ph-gold"><div class="pacote-icon">🌅</div><div class="pacote-name">Barcelos em Um Dia</div><div class="pacote-duration">1 dia</div></div>
+      <div class="pacote-body"><div class="pacote-price">70€</div><div class="pacote-price-label">por pessoa</div><p class="pacote-desc">A essência de Barcelos numa só jornada: centro histórico, Museu de Olaria, sabores da gastronomia minhota e o charme das ruas tradicionais.</p><div class="pacote-includes"><span class="tag">Centro histórico</span><span class="tag">Museu de Olaria</span><span class="tag">Gastronomia</span><span class="tag">Transporte</span></div></div>
+    </div>
+    <div class="pacote-card">
+      <div class="pacote-header ph-dark"><div class="pacote-icon">🏨</div><div class="pacote-name">Escapadinha com Tradição</div><div class="pacote-duration">2 dias / 1 noite</div></div>
+      <div class="pacote-body"><div class="pacote-price">107€</div><div class="pacote-price-label">por pessoa</div><p class="pacote-desc">Olaria, vinhos regionais e animação sociocultural com full board. Uma escapadinha completa, com tudo tratado ao pormenor.</p><div class="pacote-includes"><span class="tag">Olaria</span><span class="tag">Vinhos regionais</span><span class="tag">Full board</span><span class="tag">Animação</span></div></div>
+    </div>
+  </div>
+  <p class="pacotes-note">Todos os pacotes incluem: transporte adaptado · guia especializado · seguro de viagem · kit de boas-vindas personalizado</p>
+</section>
+
+<section id="mercado">
+  <p class="section-eyebrow">03 · Análise de Mercado</p>
+  <h2 class="section-title">Análise SWOT</h2>
+  <p class="section-lead">Um olhar honesto sobre o nosso posicionamento, para crescer com consistência e ambição.</p>
+  <div class="swot-grid">
+    <div class="swot-box forcas"><div class="swot-label">Forças</div><ul class="swot-list"><li>Conceito diferenciador em turismo sénior ativo</li><li>Experiências imersivas e autênticas de Barcelos</li><li>Foco no património local: artesanato e gastronomia</li><li>Custo operacional equilibrado</li></ul></div>
+    <div class="swot-box fraquezas"><div class="swot-label">Fraquezas</div><ul class="swot-list"><li>Marca nova sem reconhecimento internacional</li><li>Recursos humanos limitados na fase inicial</li><li>Necessidade linguística: EN / FR / ES</li></ul></div>
+    <div class="swot-box oportunidades"><div class="swot-label">Oportunidades</div><ul class="swot-list"><li>Turismo sénior em crescimento global</li><li>Barcelos — UNESCO Creative City</li><li>Programas europeus: Erasmus+ Sénior</li><li>Slow travel e bem-estar em alta</li></ul></div>
+    <div class="swot-box ameacas"><div class="swot-label">Ameaças</div><ul class="swot-list"><li>Concorrência de agências maiores</li><li>Sazonalidade turística</li><li>Exigências legais e burocráticas</li></ul></div>
+  </div>
+</section>
+
+<section id="viabilidade">
+  <p class="section-eyebrow">05 · Viabilidade</p>
+  <h2 class="section-title">Financeira, Legal e Sustentabilidade</h2>
+  <p class="section-lead">Um projeto pensado para ser viável, responsável e duradouro — com transparência em cada decisão.</p>
+  <div class="via-bottom">
+    <div class="via-card"><div class="via-card-title">⚖️ Viabilidade Legal</div><ul class="via-list"><li>Registo RNAAT — Turismo de Portugal</li><li>Seguros obrigatórios: RC + acidentes pessoais</li><li>Conformidade RGPD</li><li>Transporte turístico certificado</li><li>Acessibilidade para mobilidade reduzida</li></ul></div>
+    <div class="via-card"><div class="via-card-title">🌿 Sustentabilidade</div><ul class="via-list"><li>Materiais recicláveis nas atividades</li><li>Valorização de produtos locais</li><li>Redução uso de papel com meios digitais</li><li>Sensibilização ambiental dos participantes</li><li>Parcerias com produtores e artesãos locais</li></ul></div>
+  </div>
+</section>
+
+<section id="contacto">
+  <p class="section-eyebrow">Contacto</p>
+  <h2 class="section-title">Fale connosco</h2>
+  <p class="section-lead">Pronta para viver Barcelos com alma? Entre em contacto e ajudamos a escolher a experiência certa.</p>
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Morada</div><div class="contact-value">Rua Dr. Abel Varzim, Bloco 32</div><div class="contact-sub">Barcelos, 4750-253</div></div></div>
+      <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Telefone</div><div class="contact-value">+351 913 736 544</div><div class="contact-sub">Chamada para rede móvel nacional</div></div></div>
+      <div class="contact-item"><div class="contact-icon">📸</div><div><div class="contact-label">Instagram</div><div class="contact-value">@seniorturbarceloscomalma</div><div class="contact-sub">Siga-nos para novidades e experiências</div></div></div>
+      <div class="contact-item"><div class="contact-icon">✉️</div><div><div class="contact-label">Email</div><div class="contact-value">seniormaistur@gmail.com</div><div class="contact-sub">Respondemos em menos de 24 horas</div></div></div>
+    </div>
+    <div class="form-card">
+      <h3>Peça informações</h3>
+      <form id="contactForm" action="https://formspree.io/f/mqevqdyy" method="POST">
+        <input type="hidden" name="_subject" value="Novo pedido — Sénior+Tur">
+        <div class="form-row">
+          <div class="form-group"><label>Nome</label><input type="text" name="nome" placeholder="O seu nome" required></div>
+          <div class="form-group"><label>Telefone</label><input type="tel" name="telefone" placeholder="+351 9XX XXX XXX"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="email@exemplo.pt" required></div>
+        <div class="form-group">
+          <label>Pacote de interesse</label>
+          <select name="pacote">
+            <option value="">Selecione um pacote...</option>
+            <option>Tradições com Alma — 190€</option>
+            <option>Momentos em Família — 135€</option>
+            <option>Barcelos em Um Dia — 70€</option>
+            <option>Escapadinha com Tradição — 107€</option>
+            <option>Ainda não sei, quero informações</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Mensagem</label><textarea name="mensagem" placeholder="Conte-nos o que procura, quantas pessoas, datas preferidas..."></textarea></div>
+        <button type="submit" class="btn-form">Enviar pedido</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✅</div>
+        <p>Mensagem enviada com sucesso!<br>Entraremos em contacto em breve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">Sénior<span>+</span>Tur</div>
+    <div class="footer-tagline">Barcelos com Alma · Experiências que ficam.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#sobre">Sobre</a><a href="#pacotes">Pacotes</a><a href="#mercado">Mercado</a><a href="#viabilidade">Viabilidade</a><a href="#contacto">Contacto</a>
+  </div>
+  <div class="footer-copy">© 2025/2026 Sénior+Tur · Escola Secundária de Barcelinhos · Ana Teresa Loureiro da Costa · 12ºTR · RNAAT — Turismo de Portugal</div>
+</footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.btn-form');
+      btn.textContent = 'A enviar...';
+      btn.disabled = true;
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Enviar pedido';
+        btn.disabled = false;
+        alert('Ocorreu um erro. Por favor contacta-nos diretamente para seniormaistur@gmail.com');
+      }
+    });
+  }
+</script>
+</body>
+</html>
