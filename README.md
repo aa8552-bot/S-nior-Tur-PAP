@@ -23,6 +23,3 @@ A Sénior+Tur é uma proposta de agência de viagens focada no turismo sénior a
 Ana Teresa Loureiro da Costa  
 12.º TR — Curso de Turismo  
 Escola Secundária de Barcelinhos
-Ana Teresa Loureiro da Costa  
-12.º TR — Curso de Turismo  
-Escola Secundária de Barcelinhos
